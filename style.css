@@ -8,6 +8,12 @@ body {
   background: black;
 }
 
+#start-screen,
+#game-screen {
+  text-align: center;
+  overflow: hidden;
+}
+
 #start {
   background-color: black;
   border: 5px solid #00ff00;
