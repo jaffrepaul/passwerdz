@@ -46,4 +46,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     return arrayCopy;
   };
+
+  const setGuessCount = newCount => {
+    guessCount = newCount;
+    document.getElementById(
+      'guesses-remaining'
+    ).innerText = `Guesses remaining: ${guessCount}.`;
+  };
+
+  // TODO: refactor to arrow func, proper 'this' binding
+  function updateGame({ target }) {
+    if (target.tagName === 'LI' && !target.classList.contains('disabled')) {
+      // grab guessed word, check it against password, update view
+      const guess = target.innerText;
+      const similarityScore = compareWords(guess, password);
+      target.classList.add('disabled');
+      target.innerText = `${
+        target.innerText
+      } --> Matching Letters: ${similarityScore}`;
+      setGuessCount(guessCount - 1);
+
+      // check whether the game is over
+      if (similarityScore === password.length) {
+        toggleClasses(document.getElementById('winner'), 'hide', 'show');
+        this.removeEventListener('click', updateGame);
+      } else if (guessCount === 0) {
+        toggleClasses(document.getElementById('loser'), 'hide', 'show');
+        this.removeEventListener('click', updateGame);
+      }
+    }
+  }
+
+  const compareWords = (word1, word2) => {
+    if (word1.length !== word2.length) throw 'Words must have the same length';
+    let count = 0;
+    for (let i = 0; i < word1.length; i++) {
+      if (word1[i] === word2[i]) count++;
+    }
+    return count;
+  };
 });
