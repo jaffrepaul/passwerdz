@@ -20,13 +20,13 @@ body {
 
 .show {
   max-height: 1000px;
-  transition-duration: 1s;
+  transition-duration: 0.5s;
   display: block;
 }
 
 .hide {
   max-height: 0;
-  transition-duration: 1s;
+  transition-duration: 0.5s;
   overflow: hidden;
 }
 
@@ -56,7 +56,7 @@ body {
 }
 
 #word-list > li {
-  padding: 5px;
+  padding: 8px;
 }
 
 #word-list > li.disabled {
