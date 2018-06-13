@@ -41,8 +41,8 @@ body {
 
 #start:hover {
   cursor: pointer;
-  background-color: yellow;
-  border: 5px solid yellow;
+  background-color: #00ff00;
+  border: 5px solid #00ff00;
   color: black;
 }
 
